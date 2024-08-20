@@ -1,4 +1,4 @@
-package com.iec.bank_system.main;
+package com.iec.bank_system.view;
 
 /**
  * Hello world!
