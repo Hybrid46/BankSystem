@@ -12,7 +12,6 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
-import com.opencsv.CSVWriterBuilder;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -33,33 +32,6 @@ public class CsvWriter {
 	public void SetFileName(String fileName) {
 		this.fileName = fileName;
 	}
-
-//	public void WriteFile(String fileName) {
-//		try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(fileName))) {
-//			dos.writeInt(123);
-//			dos.writeDouble(4.5);
-//			dos.writeBoolean(false);
-//			dos.writeUTF("DOS szöveges input");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//
-//	public void ReadFile(String fileName) {
-//		try (DataInputStream dis = new DataInputStream(new FileInputStream(fileName))) {
-//			int intVal = dis.readInt();
-//			double doubleVal = dis.readDouble();
-//			boolean boolVal = dis.readBoolean();
-//			String stringVal = dis.readUTF();
-//
-//			System.out.println("Int val: " + intVal);
-//			System.out.println("Int val: " + doubleVal);
-//			System.out.println("Int val: " + boolVal);
-//			System.out.println("Int val: " + stringVal);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	public List<String[]> ReadAllCSV(boolean printOut) throws Exception {
 		List<String[]> allRows = null;
