@@ -32,13 +32,14 @@ public class FileLogger {
 	public static Logger getLogger(String className) {
 		Logger logger = Logger.getLogger(className);
 
-		for (var handler : logger.getHandlers())
-			logger.removeHandler(handler);
-
 		ConsoleHandler consoleHandler = new ConsoleHandler();
 
 		consoleHandler.setLevel(Level.ALL);
 		consoleHandler.setFormatter(new ColorConsoleFormatter());
+		
+		for (var handler : logger.getHandlers())
+			logger.removeHandler(handler);
+		
 		logger.addHandler(consoleHandler);
 		logger.setUseParentHandlers(false);
 

@@ -32,8 +32,10 @@ public final class SavingsAccount extends Account {
 	}
 	
 	public void ApplyInterest() {
-		long currentBalance = getBalance();
-		long interest = (long)(currentBalance * INTEREST_RATE / 100d);
-		setBalance(currentBalance + interest);
+		long currentBalance = GetBalance();
+		long interest = (long)((double)currentBalance * (INTEREST_RATE / 100d));
+		SetBalance(currentBalance + interest);
 	}
+	
+	
 }
