@@ -38,15 +38,14 @@ public abstract class Account {
 		this.transactions = transactions;
 	}
 
-	public void Deposit(Long addBalance) {
+	public void Deposit(long addBalance) {
 		balance += addBalance;
 	}
 
-	public abstract boolean Withdraw(Long withdrawBalance);
+	public abstract boolean Withdraw(long withdrawBalance);
 
-	// TODO return duples
 	public void GetAccountDetails() {
-		// return accountNumber, balance
+		Main.LOGGER.info(toString());
 	}
 
 	public List<Transaction> GetTransactions() {
@@ -66,7 +65,7 @@ public abstract class Account {
 	}
 
 	// returns -1 on fail
-	private long GenerateAccountNumber() {
+	private long GenerateAccountNumber() throws NumberFormatException {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String formattedTime = dateTimeFormatter.format(localDateTime);

@@ -1,13 +1,9 @@
 package com.iec.bank_system.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.iec.bank_system.model.Account;
-import com.iec.bank_system.model.CheckingAccount;
 import com.iec.bank_system.model.Customer;
-import com.iec.bank_system.model.Transaction;
 import com.iec.bank_system.view.Main;
 
 /*
@@ -19,56 +15,51 @@ findCustomer (ügyfél keresése), listCustomers (ügyfelek listázása).
 
 public class Bank {
 
-	Map<Customer, Account> customers;
+	//lookup table for name -> Customer
+	private Map<String, Customer> customers;
 
-	public Bank(HashMap<Customer, Account> initialCustomers) {
+	public Bank(HashMap<String, Customer> initialCustomers) {
 		if (initialCustomers == null) {
-			customers = new HashMap<Customer, Account>();
+			customers = new HashMap<String, Customer>();
 		} else {
-			customers = new HashMap<Customer, Account>(initialCustomers);
+			customers = new HashMap<String, Customer>(initialCustomers);
 		}
 	}
 
-	public boolean AddCustomer(Customer customer) {
-		return AddCustomer(customer, null);
-	}
-
-	public boolean AddCustomer(Customer customer, Account account) {
-		if (customers.containsKey(customer)) {
+	public boolean AddCustomer(String name,  Customer customer) {
+		if (customers.containsKey(name)) {
 			Main.LOGGER.severe("Customer already exists!");
 			return false;
 		} else {
-			if (account == null)
-				account = new CheckingAccount(0, 0, new ArrayList<Transaction>());
-			customers.put(customer, account);
+			customers.put(name, customer);
 			Main.LOGGER.info("Customer added.");
 			return true;
 		}
 	}
 
-	public boolean RemoveCustomer(Customer customer) {
-		if (!customers.containsKey(customer)) {
+	public boolean RemoveCustomer(String name) {
+		if (!customers.containsKey(name)) {
 			Main.LOGGER.severe("Customer not exists!");
 			return false;
 		} else {
-			customers.remove(customer);
+			customers.remove(name);
 			Main.LOGGER.info("Customer removed.");
 			return true;
 		}
 	}
 
-	public Account FindCustomer(Customer customer) {
-		if (!customers.containsKey(customer)) {
+	public Customer FindCustomer(String name) {
+		if (!customers.containsKey(name)) {
 			Main.LOGGER.severe("Customer not exists!");
 			return null;
 		} else {
 			Main.LOGGER.info("Customer found.");
-			return customers.get(customer);
+			return customers.get(name);
 		}
 	}
 	
 	public void ListCustomers() {
-		for (Map.Entry<Customer, Account> customer : customers.entrySet()) {
+		for (Map.Entry<String, Customer> customer : customers.entrySet()) {
 			Main.LOGGER.info(customer.getKey().toString());
 			Main.LOGGER.info(customer.getValue().toString());
 		}

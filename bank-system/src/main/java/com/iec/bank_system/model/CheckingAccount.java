@@ -2,6 +2,8 @@ package com.iec.bank_system.model;
 
 import java.util.List;
 
+import com.iec.bank_system.view.Main;
+
 /*
 ● Tranzakciós díj (TRANSACTION_FEE): Minden tranzakció esetén egy fix összegű díjat
 vonunk le a számla egyenlegéből.
@@ -17,9 +19,18 @@ public final class CheckingAccount extends Account {
 	}
 
 	@Override
-	public boolean Withdraw(Long withdrawBalance) {
-			balance -= withdrawBalance + TRANSACTION_FEE;
+	public boolean Withdraw(long withdrawBalance) {
+		long withdrawWithFee = withdrawBalance + TRANSACTION_FEE;
+		
+		if (balance - withdrawWithFee> 0) {
+			balance -= withdrawWithFee;
+			Main.LOGGER.info("Withdrawed " + withdrawWithFee + " new balance " + balance);
 			return true;
+		}
+		else {
+			Main.LOGGER.warning("Not enough balance!");
+			return false;
+		}	
 	}
 
 }

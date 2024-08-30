@@ -2,6 +2,8 @@ package com.iec.bank_system.model;
 
 import java.util.List;
 
+import com.iec.bank_system.view.Main;
+
 /*
 Minimális egyenleg követelmény (MIN_BALANCE): A számla egyenlege nem
 csökkenhet egy meghatározott minimális összeg alá.
@@ -19,14 +21,15 @@ public final class SavingsAccount extends Account {
 	}
 
 	@Override
-	public boolean Withdraw(Long withdrawBalance) 
+	public boolean Withdraw(long withdrawBalance) 
 	{
 		if (balance - withdrawBalance > MIN_BALANCE) {
 			balance -= withdrawBalance;
+			Main.LOGGER.info("Withdrawed " + withdrawBalance + " new balance " + balance);
 			return true;
 		}
 		else {
-			//TODO log nincs elég egyenleg
+			Main.LOGGER.warning("Not enough balance!");
 			return false;
 		}	
 	}
