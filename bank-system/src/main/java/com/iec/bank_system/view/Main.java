@@ -18,8 +18,6 @@ public class Main
     	
     	Bank bank = new Bank(null); //seedable -> read data from disk
     	
-    	//LOGGER.severe("Severe!");
-    	//LOGGER.warning("Warning!");
     	LOGGER.info("Bank System initialized!");
     	
     	//TODO Menu

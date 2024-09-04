@@ -19,10 +19,10 @@ public class Customer {
 	private int customerId;
 	private List<Account> accounts;
 
-	public Customer(String name) {
+	public Customer(String name, int customerID) {
 		super();
 		this.name = name;
-		this.customerId = GenerateCustomerID();
+		this.customerId = customerID;
 		this.accounts = new ArrayList<Account>();
 	}
 
@@ -61,16 +61,11 @@ public class Customer {
 		}
 	}
 	
-	public int getCustomerId() {
+	public int GetCustomerId() {
 		return customerId;
 	}
 
 	public List<Account> getAccounts() {
 		return accounts;
-	}
-
-	private int GenerateCustomerID() {
-		//TODO
-		return 0;
 	}
 }
